@@ -14,30 +14,41 @@ except Exception as e:
 # -----------------------------
 # Streamlit UI setup
 # -----------------------------
-st.set_page_config(page_title="Cyberbullying Detector", page_icon="🧠")
+st.set_page_config(page_title="Cyberbullying Detector", page_icon="🧠", layout="centered")
 
-# Add your name at top-right
+# Force dark top bar & show your name in top-right
 st.markdown(
     """
     <style>
-    .top-right {
-        position: fixed;
-        top: 10px;
-        right: 25px;
-        background-color: #1e1e2f;
-        color: white;
-        padding: 6px 14px;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: bold;
-        box-shadow: 1px 1px 6px rgba(0,0,0,0.3);
-        z-index: 9999;
-    }
+        /* Hide default Streamlit header */
+        header {visibility: hidden;}
+
+        /* Add your custom name bar */
+        .custom-header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            background-color: #262730;
+            color: white;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 25px;
+            font-weight: bold;
+            font-size: 16px;
+            z-index: 9999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
     </style>
-    <div class="top-right">👨‍💻 Ayush Dwivedi</div>
+    <div class="custom-header">👨‍💻 Ayush Dwivedi</div>
     """,
     unsafe_allow_html=True
 )
+
+# Add space below header so content doesn’t overlap
+st.markdown("<br><br><br>", unsafe_allow_html=True)
 
 # -----------------------------
 # Main title & input box
