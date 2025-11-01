@@ -2,8 +2,8 @@ import streamlit as st
 import pickle
 
 # Load model and vectorizer
-model = pickle.load(open("model.pkl", "rb"))
-vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
+model = pickle.load(open("LinearSVCTuned.pkl", "rb"))
+vectorizer = pickle.load(open("tfidfvectorizer.pkl", "rb"))
 
 st.title("🧠 Cyberbullying Detector")
 st.write("Enter a text message to check if it contains cyberbullying content.")
@@ -20,3 +20,4 @@ if st.button("Detect"):
             st.success("✅ No cyberbullying detected.")
     else:
         st.warning("Please enter some text before detecting.")
+
