@@ -14,7 +14,7 @@ except Exception as e:
 # -----------------------------
 # Streamlit UI setup
 # -----------------------------
-st.set_page_config(page_title="Cyberbullying Detector", page_icon="🧠", layout="centered")
+st.set_page_config(page_title="Cyberbullying Detector", page_icon="🕵️‍♂️", layout="centered")
 
 # Force dark top bar & show your name in top-right
 st.markdown(
@@ -74,3 +74,4 @@ if st.button("🔍 Detect"):
             st.error("⚠️ Error during prediction. Vectorizer may not match the model.")
     else:
         st.warning("⚠️ Please enter some text before clicking **Detect**.")
+
