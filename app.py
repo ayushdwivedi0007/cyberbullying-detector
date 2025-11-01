@@ -53,7 +53,7 @@ st.markdown("<br><br><br>", unsafe_allow_html=True)
 # -----------------------------
 # Main title & input box
 # -----------------------------
-st.title("🧠 Cyberbullying Detection App")
+st.title("🕵️‍♂️ Cyberbullying Detection App")
 
 text = st.text_area("✍️ Enter a message to check:", height=150, placeholder="Type something...")
 
@@ -74,4 +74,5 @@ if st.button("🔍 Detect"):
             st.error("⚠️ Error during prediction. Vectorizer may not match the model.")
     else:
         st.warning("⚠️ Please enter some text before clicking **Detect**.")
+
 
