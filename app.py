@@ -1,24 +1,22 @@
-from flask import Flask, render_template, request
+import streamlit as st
 import pickle
-from sklearn.feature_extraction.text import TfidfVectorizer
 
-app = Flask(__name__)
+# Load model and vectorizer
+model = pickle.load(open("model.pkl", "rb"))
+vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
 
-with open("stopwords.txt", "r") as file:
-    stopwords = file.read().splitlines()
+st.title("🧠 Cyberbullying Detector")
+st.write("Enter a text message to check if it contains cyberbullying content.")
 
-vectorizer = TfidfVectorizer(stop_words=stopwords, lowercase=True, vocabulary=pickle.load(open("tfidfvectoizer.pkl", "rb")))
-model = pickle.load(open("LinearSVCTuned.pkl", 'rb'))
+text = st.text_area("Enter text here:")
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    prediction = None
-    if request.method == 'POST':
-        user_input = request.form['text']
-        transformed_input = vectorizer.fit_transform([user_input])
-        prediction = model.predict(transformed_input)[0]
-    
-    return render_template('index.html', prediction=prediction)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+if st.button("Detect"):
+    if text.strip():
+        input_data = vectorizer.transform([text])
+        prediction = model.predict(input_data)[0]
+        if prediction == 1:
+            st.error("🚨 Cyberbullying detected!")
+        else:
+            st.success("✅ No cyberbullying detected.")
+    else:
+        st.warning("Please enter some text before detecting.")
